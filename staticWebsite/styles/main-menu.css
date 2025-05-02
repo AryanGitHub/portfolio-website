@@ -1,0 +1,80 @@
+.main-menu-button {
+    display: none;
+}
+
+.main-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 30vw;
+    height: 13vh;
+    background-color: #181f2a;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+
+.main-menu-item {
+    height: 100%;
+    min-width: 10%;
+
+    margin: 0px;
+    margin-left: 1%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    padding-left: 2%;
+    padding-right: 2%;
+
+    transition: background-color 0.125s;
+    transition: border-left-width 0.125s;
+    transition: border-right-width 0.125s;
+    transition: border-color 0.125s;
+    transition: text-decoration 0.125s;
+
+
+
+}
+
+.main-menu-item:hover {
+    border-style: solid;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    border-color: aliceblue;
+    background-color: #222c3d;
+
+    text-decoration: underline;
+    color: aliceblue;
+}
+
+.main-menu-item:active {
+    opacity: 0.3;
+    font-weight: bold;
+}
+
+
+
+.main-menu-item-icon {
+    height: 20%;
+    filter: invert(1);
+
+}
+
+.main-menu-item-text {
+    font-size: 100%;
+    margin-left: 15%;
+    color: aliceblue;
+
+
+}

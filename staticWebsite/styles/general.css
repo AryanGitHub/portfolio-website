@@ -1,0 +1,14 @@
+p {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    position: static;
+    padding-top: 13vh;
+    padding-left: 30vw;
+    margin: 0px;
+
+    background-color: oklch(21.56% 0.01 285.56);
+}

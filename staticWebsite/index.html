@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Pandey</title>
+
+    <style>
+        .page-body .skills-div {
+            display: grid;
+
+            grid-template-columns: 30% 1fr;
+
+            row-gap: 10%;
+            column-gap: 10%;
+            font-family: 'Courier New', Courier, monospace;
+            color: oklch(98.52% 0.0076 1.58);
+            font-size: 120%;
+        }
+
+        .page-body .skill_type {
+            text-align: left;
+            font-weight: bold;
+
+        }
+
+        .page-body .skill_list {
+            text-align: right;
+        }
+    </style>
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/main-menu.css">
+    <link rel="stylesheet" href="styles/page-body.css">
+
+    <link rel="stylesheet" href="styles/mobile.css">
+</head>
+
+<body>
+    <div id="header" class="info-bar">
+        <div class="info-tile">
+
+            <div class="blank-space"></div>
+
+            <div class="button-and-full-name">
+
+                <div class="main-menu-button">
+                    <img class="main-menu-button-icon" src="main-menu-icons/bars.svg" alt="">
+                </div>
+
+                <div class="full-name">
+                    <p id="first-name" class="first-name">Aryan</p>
+                    <p id="last-name" class="last-name">Pandey</p>
+                </div>
+            </div>
+
+            <div class="blank-space"></div>
+
+            <div class="contact-info-div">
+
+                <a href="resume.com" target="_blank" class="contact-tile">
+                    <img class="icon" src="icons/resume.svg">
+                    <p class="id">Resume</p>
+                </a>
+
+                <a href="https://github.com/AryanGitHub" target="_blank" class="contact-tile">
+                    <img class="icon" src="icons/github.svg">
+                    <p class="id">AryanGitHub</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/aryan-pandey-oumuamua/" target="_blank" class="contact-tile">
+                    <img class="icon" src="icons/linkedin.svg">
+                    <p id="text1" class="id">aryan-pandey-oumuamua</p>
+                    <p id="text2" class="id">LinkedIn</p>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="main-menu-id" class="main-menu">
+
+
+        <a href="/index.html" class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/house.svg">
+            <p class="main-menu-item-text">Home</p>
+        </a>
+
+        <!-- <div class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/house.svg">
+            <p class="main-menu-item-text">Badges & Certifications</p>
+        </div> -->
+
+        <a href="/projects.html" class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/projects.svg">
+            <p class="main-menu-item-text">Projects</p>
+        </a>
+
+        <!-- <div class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/house.svg">
+            <p class="main-menu-item-text">Blogs</p>
+        </div> -->
+
+        <a href="/contact.html" class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/contact.svg">
+            <p class="main-menu-item-text">Contact</p>
+        </a>
+
+    </div>
+
+    <div class="page-body">
+
+        <h2>I am a Student, who is interested in </h2>
+        <ul>
+            <li>
+                <span class="pink-color">Software Development</span> & Software Architecture
+            </li>
+            <li>
+                Computer <span class="pink-color">Networks</span>
+            </li>
+            <li>
+                Cloud <span class="pink-color">& DevOps</span>
+            </li>
+            <li>
+                Unixbased <span class="pink-color">Kernels</span>
+            </li>
+            <li>
+                Compilers
+            </li>
+        </ul>
+
+        <p class="para-text">I am pursuing a <a class="link-text" target="_blank"
+                href="https://en.wikipedia.org/wiki/Bachelor_of_Technology#India">Bachelor of Technology (BTech)</a> in
+            <a class="link-text" target="_blank"
+                href="https://en.wikipedia.org/wiki/Computer_science_and_engineering">Computer Science and Engineering
+                (CSE)</a>
+            with a specialization in <span class="pink-color">Artificial Intelligence and Machine Learning (AIML)</span>
+            at <a class="link-text" target="_blank"
+                href="https://en.wikipedia.org/wiki/SRM_Institute_of_Science_and_Technology">SRM Institute of Science
+                and
+                Technology (SRMIST).</a>
+        </p>
+
+        <h2>My Skills: </h2>
+        <div class="skills-div">
+
+
+            <div class="skill_type">DevOps and Tools: </div>
+            <div class="skill_list">CloudFormation, Terraform, Docker, GitHub Actions</div>
+
+            <div class="skill_type">Programming Languages: </div>
+            <div class="skill_list">Python, Java, Bash, C/C++, JavaScript, SQL, HTML, CSS</div>
+
+
+            <div class="skill_type">Cloud Platforms: </div>
+            <div class="skill_list">AWS (IAM, EC2, VPC, Lambda, S3, DynamoDB, ECS, API Gateway, RDS)</div>
+
+            <div class="skill_type">Operating Systems: </div>
+            <div class="skill_list">Linux (Debian, Ubuntu, CentOS, Fedora)</div>
+
+            <div class="skill_type">Other Skills: </div>
+            <div class="skill_list">CI/CD Pipelines, Infrastructure as Code, Microservices, REST APIs</div>
+
+        </div>
+
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

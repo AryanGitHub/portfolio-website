@@ -1,0 +1,42 @@
+.page-body {
+    padding-left: 5%;
+    padding-top: 1%;
+
+    width: 75%;
+}
+
+.page-body h2 {
+    color: oklch(98.52% 0.0076 1.58);
+    font-size: 200%;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.page-body ul {
+    color: oklch(98.52% 0.0076 1.58);
+    font-size: 120%;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+
+    margin-top: 0.5%;
+    margin-bottom: 2%;
+}
+
+.page-body .pink-color {
+    color: oklch(78.23% 0.1513 336.5);
+}
+
+.page-body .para-text {
+    color: oklch(98.52% 0.0076 1.58);
+    font-size: 120%;
+    line-height: 1.5;
+
+    margin-bottom: 5%;
+}
+
+.page-body .link-text {
+    color: oklch(76.41% 0.1234 299.64);
+    text-decoration: none;
+
+}

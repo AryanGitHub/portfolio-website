@@ -1,0 +1,98 @@
+
+.info-bar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 30vw;
+    background-color: #252f3e;
+
+    border-width: 0wv;
+    border-right-width: 2wv;
+    border-right-style: solid;
+    border-right-color: gray;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 100;
+
+}
+
+
+.info-tile {
+    width: 85%;
+    height: 90%;
+
+    border-width: 0%;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+
+}
+
+
+
+.contact-info-div {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+}
+
+.full-name {
+    text-align: right;
+}
+
+.full-name .first-name,
+.full-name .last-name {
+    color: aliceblue;
+    font-size: 6vw;
+    text-shadow: 5px 5px 20px darkblue;
+}
+
+.contact-tile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+
+    margin: 0px;
+    padding: 0px;
+
+    width: 100%;
+
+    margin-bottom: 6vh;
+    cursor: pointer;
+
+    text-decoration: none;
+}
+
+.contact-tile .id {
+    color: aliceblue;
+
+    font-size: 1.7vw;
+    margin-left: 5%;
+}
+
+.contact-tile #text2 {
+    display: none;
+}
+
+
+.contact-tile .icon {
+    height: 100%;
+    filter: invert(1);
+}
+
+.blank-space {
+    min-height: 15%;
+    width: 100%;
+}

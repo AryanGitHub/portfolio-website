@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Pandey</title>
+
+    <style>
+        .page-body .contact-div {
+            display: grid;
+
+            grid-template-columns: 30% 1fr;
+
+            row-gap: 10%;
+            column-gap: 10%;
+            font-family: 'Courier New', Courier, monospace;
+            color: oklch(98.52% 0.0076 1.58);
+            font-size: 120%;
+        }
+
+        .page-body .contact_type {
+            text-align: left;
+            font-weight: bold;
+
+        }
+
+        .page-body .contact_list {
+            text-align: right;
+        }
+
+        .page-body .link-text {
+            color: oklch(76.41% 0.1234 299.64);
+            text-decoration: none;
+
+        }
+
+        @media (max-width: 1000px) {
+
+            .page-body .contact-div {
+                font-size: 4vw;
+            }
+
+            .large-text-size {
+                font-size: 3vw;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/main-menu.css">
+    <link rel="stylesheet" href="styles/page-body.css">
+
+    <link rel="stylesheet" href="styles/mobile.css">
+</head>
+
+<body>
+    <div id="header" class="info-bar">
+        <div class="info-tile">
+
+            <div class="blank-space"></div>
+
+            <div class="button-and-full-name">
+
+                <div class="main-menu-button">
+                    <img class="main-menu-button-icon" src="main-menu-icons/bars.svg" alt="">
+                </div>
+
+                <div class="full-name">
+                    <p id="first-name" class="first-name">Aryan</p>
+                    <p id="last-name" class="last-name">Pandey</p>
+                </div>
+            </div>
+
+            <div class="blank-space"></div>
+
+            <div class="contact-info-div">
+
+                <a href="resume.com" target="_blank" class="contact-tile">
+                    <img class="icon" src="icons/resume.svg">
+                    <p class="id">Resume</p>
+                </a>
+
+                <a href="https://github.com/AryanGitHub" target="_blank" class="contact-tile">
+                    <img class="icon" src="icons/github.svg">
+                    <p class="id">AryanGitHub</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/aryan-pandey-oumuamua/" target="_blank" class="contact-tile">
+                    <img class="icon" src="icons/linkedin.svg">
+                    <p id="text1" class="id">aryan-pandey-oumuamua</p>
+                    <p id="text2" class="id">LinkedIn</p>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="main-menu-id" class="main-menu">
+
+        <a href="/index.html" class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/house.svg">
+            <p class="main-menu-item-text">Home</p>
+        </a>
+
+        <!-- <div class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/house.svg">
+            <p class="main-menu-item-text">Badges & Certifications</p>
+        </div> -->
+
+        <a href="/projects.html" class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/projects.svg">
+            <p class="main-menu-item-text">Projects</p>
+        </a>
+
+        <!-- <div class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/house.svg">
+            <p class="main-menu-item-text">Blogs</p>
+        </div> -->
+
+        <a href="/contact.html" class="main-menu-item">
+            <img class="main-menu-item-icon" src="main-menu-icons/contact.svg">
+            <p class="main-menu-item-text">Contact</p>
+        </a>
+
+
+    </div>
+
+    <div class="page-body">
+
+        <h2>Get in Touch </h2>
+
+        <p class="para-text">
+            I’d love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to
+            reach out.
+        </p>
+
+        <h2>My Contact Details: </h2>
+        <div class="contact-div">
+
+
+            <div class="contact_type">Email: </div>
+            <div class="contact_list">
+                <p class="large-text-size">aryanandroid26[at]gmail[dot]com</p>
+            </div>
+
+            <div class="contact_type">LinkedIn: </div>
+            <div class="contact_list"><a class="link-text" href="https://www.linkedin.com/in/aryan-pandey-oumuamua/"
+                    target="_blank">
+                    <p id="text1" class="id">aryan-pandey-oumuamua</p>
+                </a>
+            </div>
+
+
+            <div class="contact_type">Github: </div>
+            <div class="contact_list"><a class="link-text" href="https://github.com/AryanGitHub" target="_blank">
+                    <p class="id">AryanGitHub</p>
+                </a>
+            </div>
+
+            <div class="contact_type">Discord: </div>
+            <div class="contact_list">oumuamua0000</div>
+
+            <div class="contact_type">Backup Email: </div>
+            <div class="contact_list">~~~~~~~~~~</div>
+
+        </div>
+
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
