@@ -20,9 +20,10 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
-        role-to-assume: ${{ secrets.ROLE_ARN }}
-        role-duration-seconds: 300
-        role-session-name: githubActionSession
+        
+        # role-to-assume: ${{ secrets.ROLE_ARN }}
+        # role-duration-seconds: 900
+        # role-session-name: githubActionSession
 
     - name: Upload static files to S3
       run: aws s3 cp ./staticWebsite/ "s3://${{ secrets.BUCKET_NAME }}/" --recursive

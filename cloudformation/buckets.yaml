@@ -1,0 +1,146 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Resources for hosting Portfolio Site
+
+Parameters:
+  DomainNameAddress:
+    Description: Name of the Domain
+    Type: String
+    Default: aryanpandey.com
+    
+Resources:
+
+  FrontendStaticWebsiteBucket1:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref DomainNameAddress
+      WebsiteConfiguration :
+        RedirectAllRequestsTo: 
+            HostName: !Sub 'www.${DomainNameAddress}'
+            Protocol: https
+
+  FrontendStaticWebsiteBucket2:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Sub 'www.${DomainNameAddress}'
+      PublicAccessBlockConfiguration :
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      WebsiteConfiguration :
+        IndexDocument: index.html
+
+  PolicyForFrontendBucket2:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Sub 'www.${DomainNameAddress}'
+      PolicyDocument: 
+        Version: 2012-10-17
+        Statement:
+          - Sid : PublicAccessFromSite
+            Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource: !Join
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref FrontendStaticWebsiteBucket2
+                - /*
+            Principal: '*'
+            # Condition:
+            #   StringLike:
+            #     'aws:Referer':
+            #       - !Sub 'http://${DomainNameAddress}/*'
+            #       - !Sub 'https://${DomainNameAddress}/*'
+            #       - !Sub 'http://www.${DomainNameAddress}/*'
+            #       - !Sub 'https://www.${DomainNameAddress}/*'
+  
+  GithubActionsUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: github-action-user-for-portfolio-website
+
+  GithubActionsAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref GithubActionsUser
+      Status: Active
+  
+  WriteOnlyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: WriteOnlyToFrontendStaticWebsiteBucket2
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: !GetAtt GithubActionsUser.Arn
+            Action: 
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: AllowWriteToBucket
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 
+                  - s3:PutObject
+                  - s3:PutObjectTagging
+                  - s3:PutObjectAcl
+                Resource: !Sub "${FrontendStaticWebsiteBucket2.Arn}/*"
+  
+  AssumeRolePermission:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: AllowAssumeWriteOnlyRole
+      Users:
+        - !Ref GithubActionsUser
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - sts:AssumeRole
+              - sts:TagSession
+            Resource: !GetAtt WriteOnlyRole.Arn
+          - Effect: Allow
+            Action: 
+              - s3:PutObject
+              - s3:PutObjectTagging
+              - s3:PutObjectAcl
+            Resource: !Sub "${FrontendStaticWebsiteBucket2.Arn}/*" 
+
+Outputs:
+
+  AccessKeyId:
+    Value: !Ref GithubActionsAccessKey
+    Description: Access key ID
+
+  SecretAccessKey:
+    Value: !GetAtt GithubActionsAccessKey.SecretAccessKey
+    Description: Secret access key
+
+  RoleArnToAssume:
+    Value: !GetAtt WriteOnlyRole.Arn
+    Description: ARN of the role to be assumed
+
+  ContentBucketName:
+    Value: !Sub 'www.${DomainNameAddress}'
+    Description: Name of the bucket where static files are stored.
+
+  WebsiteURL:
+    Value: !GetAtt
+      - FrontendStaticWebsiteBucket2
+      - WebsiteURL
+    Description: URL for website hosted on S3
+    
+  S3BucketSecureURL:
+    Value: !Join
+      - ''
+      - - 'https://'
+        - !GetAtt
+          - FrontendStaticWebsiteBucket2
+          - DomainName
+    Description: Name of S3 bucket to hold website content
+
