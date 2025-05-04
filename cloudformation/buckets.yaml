@@ -30,6 +30,20 @@ Resources:
       WebsiteConfiguration :
         IndexDocument: index.html
 
+  FrontendStatictTestWebsiteBucket1:
+  # This S3 will hold static content for test branch.
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Sub 'test.${DomainNameAddress}'
+      PublicAccessBlockConfiguration :
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      WebsiteConfiguration :
+        IndexDocument: index.html
+
+  
   PolicyForFrontendBucket2:
     Type: AWS::S3::BucketPolicy
     Properties:
@@ -41,11 +55,38 @@ Resources:
             Action:
               - 's3:GetObject'
             Effect: Allow
-            Resource: !Join
-              - ''
-              - - 'arn:aws:s3:::'
-                - !Ref FrontendStaticWebsiteBucket2
-                - /*
+            Resource:
+              !Join
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref FrontendStaticWebsiteBucket2
+                  - /*
+            Principal: '*'
+            # Condition:
+            #   StringLike:
+            #     'aws:Referer':
+            #       - !Sub 'http://${DomainNameAddress}/*'
+            #       - !Sub 'https://${DomainNameAddress}/*'
+            #       - !Sub 'http://www.${DomainNameAddress}/*'
+            #       - !Sub 'https://www.${DomainNameAddress}/*'
+  
+  PolicyForFrontendStatictTestWebsiteBucket1:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Sub 'test.${DomainNameAddress}'
+      PolicyDocument: 
+        Version: 2012-10-17
+        Statement:
+          - Sid : PublicAccessFromSite
+            Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource:
+              !Join
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref FrontendStatictTestWebsiteBucket1
+                  - /*
             Principal: '*'
             # Condition:
             #   StringLike:
@@ -88,8 +129,9 @@ Resources:
                   - s3:PutObject
                   - s3:PutObjectTagging
                   - s3:PutObjectAcl
-                Resource: !Sub "${FrontendStaticWebsiteBucket2.Arn}/*"
-  
+                Resource: 
+                  - !Sub "${FrontendStaticWebsiteBucket2.Arn}/*"
+                  - !Sub "${FrontendStatictTestWebsiteBucket1.Arn}/*"
   AssumeRolePermission:
     Type: AWS::IAM::Policy
     Properties:
@@ -109,7 +151,9 @@ Resources:
               - s3:PutObject
               - s3:PutObjectTagging
               - s3:PutObjectAcl
-            Resource: !Sub "${FrontendStaticWebsiteBucket2.Arn}/*" 
+            Resource: 
+                  - !Sub "${FrontendStaticWebsiteBucket2.Arn}/*"
+                  - !Sub "${FrontendStatictTestWebsiteBucket1.Arn}/*"
 
 Outputs:
 
@@ -125,22 +169,41 @@ Outputs:
     Value: !GetAtt WriteOnlyRole.Arn
     Description: ARN of the role to be assumed
 
-  ContentBucketName:
+  ProductionBucketName:
     Value: !Sub 'www.${DomainNameAddress}'
     Description: Name of the bucket where static files are stored.
 
-  WebsiteURL:
+  TestBucketName:
+    Value: !Sub 'test.${DomainNameAddress}'
+    Description: Name of the bucket where static files are stored.
+
+  ProductionWebsiteURL:
     Value: !GetAtt
       - FrontendStaticWebsiteBucket2
       - WebsiteURL
     Description: URL for website hosted on S3
+
+  TestWebsiteURL:
+    Value: !GetAtt
+      - FrontendStatictTestWebsiteBucket1
+      - WebsiteURL
+    Description: URL for website hosted on S3
     
-  S3BucketSecureURL:
+  ProductionS3BucketURL:
     Value: !Join
       - ''
       - - 'https://'
         - !GetAtt
           - FrontendStaticWebsiteBucket2
           - DomainName
-    Description: Name of S3 bucket to hold website content
+    Description: URL of S3 bucket to hold website content
+
+  TestS3BucketURL:
+    Value: !Join
+      - ''
+      - - 'https://'
+        - !GetAtt
+          - FrontendStatictTestWebsiteBucket1
+          - DomainName
+    Description: URL of the test S3 bucket to hold website content
 

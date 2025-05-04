@@ -1,0 +1,29 @@
+name: deployment of test website 
+
+on:
+  push:
+    branches: [test]
+  pull_request:
+    branches: [test]
+
+jobs:
+  uploadToS3:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4.1.0
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+        
+        # role-to-assume: ${{ secrets.ROLE_ARN }}
+        # role-duration-seconds: 900
+        # role-session-name: githubActionSession
+
+    - name: Upload static files to S3
+      run: aws s3 cp ./staticWebsite/ "s3://${{ secrets.TEST_BUCKET_NAME }}/" --recursive
